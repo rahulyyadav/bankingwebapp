@@ -1,11 +1,12 @@
 import HeaderBox from '@/components/HeaderBox'
 import RightSidebar from '@/components/RightSidebar'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
+import { getLoggedInUser } from '@/lib/actions/user.actions'
 import { LassoSelect } from 'lucide-react'
 
 
-const Home = () => {
-  const loggedIn = {firstName: 'Rahul', lastName: 'Yadav', email: 'rahulyyadav21@gmail.com'};
+const Home = async() => {
+  const loggedIn = await getLoggedInUser();
   return (
     <section className="home">
       <div className='home-content'>
@@ -13,7 +14,7 @@ const Home = () => {
           <HeaderBox 
           type="greeting"
           title="Welcome"
-          user={loggedIn?.firstName || 'Guest'}
+          user={loggedIn?.name || 'Guest'}
           subtext="Access and Manage your account and transactions efficiently."
           />
 
